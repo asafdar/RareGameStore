@@ -11,9 +11,10 @@ using System;
 namespace RareGameStore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180807152451_PlatformDefaults")]
+    partial class PlatformDefaults
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,8 +144,6 @@ namespace RareGameStore.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<int>("GameCartID");
-
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -202,8 +201,6 @@ namespace RareGameStore.Data.Migrations
 
                     b.Property<int?>("PlatformID");
 
-                    b.Property<string>("PlatformName");
-
                     b.Property<decimal>("Price");
 
                     b.HasKey("ID");
@@ -211,50 +208,6 @@ namespace RareGameStore.Data.Migrations
                     b.HasIndex("PlatformID");
 
                     b.ToTable("Games");
-                });
-
-            modelBuilder.Entity("RareGameStore.Models.GameCart", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ApplicationUserID");
-
-                    b.Property<DateTime?>("DateCreated");
-
-                    b.Property<DateTime?>("DateLastModified");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ApplicationUserID")
-                        .IsUnique()
-                        .HasFilter("[ApplicationUserID] IS NOT NULL");
-
-                    b.ToTable("GameCarts");
-                });
-
-            modelBuilder.Entity("RareGameStore.Models.GameCartProduct", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime?>("DateCreated");
-
-                    b.Property<DateTime?>("DateLastModified");
-
-                    b.Property<int>("GameCartID");
-
-                    b.Property<int>("GameID");
-
-                    b.Property<int?>("Quantity");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("GameCartID");
-
-                    b.HasIndex("GameID");
-
-                    b.ToTable("GameCartProducts");
                 });
 
             modelBuilder.Entity("RareGameStore.Models.Platform", b =>
@@ -328,26 +281,6 @@ namespace RareGameStore.Data.Migrations
                     b.HasOne("RareGameStore.Models.Platform", "Platform")
                         .WithMany("Games")
                         .HasForeignKey("PlatformID");
-                });
-
-            modelBuilder.Entity("RareGameStore.Models.GameCart", b =>
-                {
-                    b.HasOne("RareGameStore.Models.ApplicationUser", "ApplicationUser")
-                        .WithOne("GameCart")
-                        .HasForeignKey("RareGameStore.Models.GameCart", "ApplicationUserID");
-                });
-
-            modelBuilder.Entity("RareGameStore.Models.GameCartProduct", b =>
-                {
-                    b.HasOne("RareGameStore.Models.GameCart", "GameCart")
-                        .WithMany("GameCartProducts")
-                        .HasForeignKey("GameCartID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("RareGameStore.Models.Game", "Game")
-                        .WithMany("GameCartProducts")
-                        .HasForeignKey("GameID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

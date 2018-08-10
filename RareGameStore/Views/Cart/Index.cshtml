@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+@if (Model.GameCartProducts.Count == 0)
+{
+    <p>You have nothing in your cart, <a asp-controller="games" asp-action="index">Check out some products</a></p>
+}
+else
+{
+    <table class="table">
+        @foreach (var product in Model.GameCartProducts)
+        {
+            <tr>
+                <td>@product.Game.Name</td>
+                <td>@((product.Game.Price ?? 0).ToString("c"))</td>
+                <td>@product.Game.Description</td>
+                <td>@product.Quantity</td>
+                <td>
+                    <form asp-action="remove" method="post">
+                        <input type="hidden" value="@product.ID" />
+                        <button class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+    <a asp-controller="checkout" asp-action="index">Checkout</a>
+}

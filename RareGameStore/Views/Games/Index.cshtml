@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Platform>
+
+<h2>Games</h2>
+
+<form>
+    <select onchange="this.form.submit()" name="category">
+        <option value="">All Products</option>
+        @if (ViewData["Categories"] != null)
+        {
+            @foreach (string category in (IEnumerable<string>)ViewData["Categories"])
+            {
+                if (ViewBag.selectedCategory == category)
+                {
+                    <option selected value="@category">@category</option>
+                }
+                else
+                {
+                    <option value="@category">@category</option>
+                }
+
+
+            }
+
+        }
+    </select>
+</form>
+
+@foreach(var platform in Model)
+{
+    @foreach (var product in platform.Games)
+    {
+    <div>
+        <h1>@product.Name</h1>
+        <p>@product.Description</p>
+        <img src="@product.ImagePath" alt="@product.Name" />
+        <p>@(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price")</p>
+        <a asp-controller="Games" asp-action="Details" asp-route-id="@product.ID">View Details</a>
+    </div>
+     }
+ }

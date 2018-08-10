@@ -14,7 +14,12 @@ namespace RareGameStore
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+ /*           if ((args.Length > 0) && (args[0].ToLowerInvariant() == "scrape"))
+            {
+                Services.DataScraperService.Scrape();
+            }
+            else
+ */               BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

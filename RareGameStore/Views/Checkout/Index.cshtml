@@ -1,0 +1,51 @@
+﻿@model CheckoutModel
+@{
+    ViewData["Title"] = "Index";
+}
+@if (!this.ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in (this.ViewData.ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => x.Value.Errors)))
+            {
+                @foreach (var message in error)
+                {
+                    <li>@message.ErrorMessage</li>
+                }
+            }
+        </ul>
+    </div>
+}
+
+<h2>Checkout</h2>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <input type="email" asp-for="Email" required class="form-control" disabled />
+            <input type="hidden" asp-for="Email" />
+        }
+        else
+        {
+            <input type="email" asp-for="Email" required class="form-control" />
+        }
+    </div>
+    <div class="form-group">
+        <label asp-for="StreetAddress"></label>
+        <input type="text" asp-for="StreetAddress" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="City"></label>
+        <input type="text" asp-for="City" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="State"></label>
+        <input type="text" asp-for="State" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ZipCode"></label>
+        <input type="text" asp-for="ZipCode" class="form-control" />
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit Order" />
+</form>
