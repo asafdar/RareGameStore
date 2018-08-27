@@ -23,52 +23,89 @@ namespace RareGameStore.Controllers
             this._userManager = userManager;
         }
 
-        public IActionResult Index(string category)
+        public async Task<IActionResult> Index(string category)
         {
-            if (_context.Games.Count() == 0)
+            if (await _context.Games.CountAsync() == 0)
             {
                 List<Game> nes = new List<Game>();
-                nes.Add(new Game {Name = "Super Mario Bros.", Genre = "Platform", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/mariobros.jpg", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now});
-                //Repeat this many times!
+                nes.Add(new Game { Name = "Battletoads", Genre = "Platform", Condition = "Mint", Description = "1991", ImagePath = "./images/battletoads.png", Price = 75m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Castlevania", Genre = "Action-Adventure", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/castlevania.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Castlevania II", Genre = "Action-Adventure", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/castlevania2.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Castlevania III", Genre = "Action-Adventure", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/castlevania3.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Contra", Genre = "Run and Gun", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/contra.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Donkey Kong", Genre = "Platform", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/donkeykong.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Donkey Kong Jr.", Genre = "Platform", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/donkeykongjr.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Double Dragon", Genre = "Beat 'em Up", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/doubledragon.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Final Fantasy", Genre = "Role-Playing Game", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/finalfantasy.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Galaga", Genre = "Arcade", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/galaga.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Gradius", Genre = "Arcade", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/gradius.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Kirby's Adventure", Genre = "Platform", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/kirby.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "The Legend of Zelda", Genre = "Adventure", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/loz.png", Price = 75m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Super Mario Bros.", Genre = "Platform", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/mariobrosbox.jpg", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Metroid", Genre = "Action-Adventure", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/metroid.jpg", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Mike Tyson's Punch-Out!!", Genre = "Fighting", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/tyson.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
                 _context.Platform.Add(new Platform { Name = "NES", Games = nes });
 
                 List<Game> snes = new List<Game>();
-                snes.Add(new Game { Name = "A Link To The Past", Genre = "Adventure", Condition = "Good", ImagePath = "/images/alttp.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Aladdin", Genre = "Adventure", Condition = "Good", ImagePath = "/images/aladdin.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Chrono Trigger", Genre = "Role-Playing Game", Condition = "Good", ImagePath = "/images/chronotrigger.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Contra 3: The Alien Wars", Genre = "Run and Gun", Condition = "Good", ImagePath = "/images/contra3.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Donkey Kong Country", Genre = "Platform", Condition = "Good", ImagePath = "/images/dkcountry.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Donkey Kong Country 2", Genre = "Platform", Condition = "Good", ImagePath = "/images/dkcountry2.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Doom", Genre = "First-person shooter", Condition = "Good", ImagePath = "/images/doom.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Dragon's Lair", Genre = "Arcade", Condition = "Good", ImagePath = "/images/dragonslair.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Earthbound", Genre = "Role-Playing Game", Condition = "Good", ImagePath = "/images/earthbound.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "F-Zero", Genre = "Racing", Condition = "Good", ImagePath = "/images/fzero.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Final Fantasy II", Genre = "Role-Playing Game", Condition = "Good", ImagePath = "/images/finalfantasy2.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Final Fantasy III", Genre = "Role-Playing Game", Condition = "Good", ImagePath = "/images/finalfantasy3.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Mega Man X", Genre = "Action-Platform", Condition = "Good", ImagePath = "/images/megamanx.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Mortal Kombat", Genre = "Fighting", Condition = "Good", ImagePath = "/images/mortalkombat.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Mortal Kombat II", Genre = "Fighting", Condition = "Good", ImagePath = "/images/mortalkombat2.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "The Legend of Zelda: A Link To The Past", Genre = "Adventure", Condition = "Good", ImagePath = "/images/alttpbox.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Secret of Mana", Genre = "Action-RPG", Condition = "Good", ImagePath = "/images/secretofmana.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Star Fox", Genre = "Shooter", Condition = "Good", ImagePath = "/images/starfox.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Street Fighter II", Genre = "Fighting", Condition = "Good", ImagePath = "/images/streetfighter2.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Super Castlevania IV", Genre = "Action-Platform", Condition = "Good", ImagePath = "/images/castlevania4.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Super Mario Kart", Genre = "Racing", Condition = "Good", ImagePath = "/images/mariokart.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Super Mario World", Genre = "Platform", Condition = "Good", ImagePath = "/images/marioworld.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Super Mario World 2: Yoshi's Island", Genre = "Platform", Condition = "Good", ImagePath = "/images/marioworld2.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Super Metroid", Genre = "Action-Adventure", Condition = "Good", ImagePath = "/images/supermetroid.jpg", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Super Star Wars", Genre = "Run and Gun", Condition = "Good", ImagePath = "/images/superstarwars.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
                 _context.Platform.Add(new Platform { Name = "SNES", Games = snes });
                 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             ViewBag.selectedCategory = category;
             List<Platform> model;
             if (string.IsNullOrEmpty(category))
             {
-                model = this._context.Platform.Include(x => x.Games).ToList();
+                model = await this._context.Platform.Include(x => x.Games).ToListAsync();
             }
             else
             {
-                model = this._context.Platform.Include(x => x.Games).Where(x => x.Name == category).ToList();
+                model = await this._context.Platform.Include(x => x.Games).Where(x => x.Name == category).ToListAsync();
             }
-            ViewData["Categories"] = this._context.Platform.Select(x => x.Name).ToArray();
+            ViewData["Categories"] = await this._context.Platform.Select(x => x.Name).ToArrayAsync();
 
             return View(model);
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
-            Game model = _context.Games.Find(id);
+            Game model = await _context.Games.FindAsync(id);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Details(int? id, int quantity, string color)
+        public async Task<IActionResult> Details(int? id, int quantity, string color)
         {
             GameCart cart = null;
             if (User.Identity.IsAuthenticated)
             {
                 //Authenticated path
-                var currentUser = _userManager.GetUserAsync(User).Result;
-                cart = _context.GameCarts.Include(x => x.GameCartProducts).ThenInclude(x => x.Game).FirstOrDefault(x => x.ApplicationUserID == currentUser.Id);
+                var currentUser = await _userManager.GetUserAsync(User);
+                cart = await _context.GameCarts.Include(x => x.GameCartProducts).ThenInclude(x => x.Game).FirstOrDefaultAsync(x => x.ApplicationUserID == currentUser.Id);
                 if (cart == null)
                 {
                     cart = new GameCart();
@@ -85,17 +122,17 @@ namespace RareGameStore.Controllers
                 {
                     int existingCartId = int.Parse(Request.Cookies["cart_id"]);
                     cart = _context.GameCarts.Include(x => x.GameCartProducts).FirstOrDefault(x => x.ID == existingCartId);
-                    cart.DateLastModified = DateTime.Now;
+                    
                 }
                 if (cart == null)
                 {
                     cart = new GameCart
                     {
                         DateCreated = DateTime.Now,
-                        DateLastModified = DateTime.Now
                     };
                     _context.GameCarts.Add(cart);
                 }
+                cart.DateLastModified = DateTime.Now;
             }
             
             GameCartProduct product = cart.GameCartProducts.FirstOrDefault(x => x.GameID == id);
@@ -113,7 +150,7 @@ namespace RareGameStore.Controllers
             product.Quantity += quantity;
             product.DateLastModified = DateTime.Now;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             if (!User.Identity.IsAuthenticated)
             {
@@ -125,6 +162,73 @@ namespace RareGameStore.Controllers
             }
 
             return RedirectToAction("Index", "Cart");
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> Add(int? id, int quantity, string color)
+        {
+            GameCart cart = null;
+            if (User.Identity.IsAuthenticated)
+            {
+                //Authenticated path
+                var currentUser = await _userManager.GetUserAsync(User);
+                cart = await _context.GameCarts.Include(x => x.GameCartProducts).ThenInclude(x => x.Game).FirstOrDefaultAsync(x => x.ApplicationUserID == currentUser.Id);
+                if (cart == null)
+                {
+                    cart = new GameCart();
+                    cart.ApplicationUserID = currentUser.Id;
+                    cart.DateCreated = DateTime.Now;
+                    cart.DateLastModified = DateTime.Now;
+                    _context.GameCarts.Add(cart);
+                }
+
+            }
+            else
+            {
+                if (Request.Cookies.ContainsKey("cart_id"))
+                {
+                    int existingCartId = int.Parse(Request.Cookies["cart_id"]);
+                    cart = _context.GameCarts.Include(x => x.GameCartProducts).FirstOrDefault(x => x.ID == existingCartId);
+
+                }
+                if (cart == null)
+                {
+                    cart = new GameCart
+                    {
+                        DateCreated = DateTime.Now,
+                    };
+                    _context.GameCarts.Add(cart);
+                }
+                cart.DateLastModified = DateTime.Now;
+            }
+
+            GameCartProduct product = cart.GameCartProducts.FirstOrDefault(x => x.GameID == id);
+            if (product == null)
+            {
+                product = new GameCartProduct
+                {
+                    DateCreated = DateTime.Now,
+                    DateLastModified = DateTime.Now,
+                    GameID = id ?? 0,
+                    Quantity = 0
+                };
+                cart.GameCartProducts.Add(product);
+            }
+            product.Quantity += quantity;
+            product.DateLastModified = DateTime.Now;
+
+            await _context.SaveChangesAsync();
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                //At the end of this page, always set the cookie.  This might just overwrite the old cookie!
+                Response.Cookies.Append("cart_id", cart.ID.ToString(), new CookieOptions
+                {
+                    Expires = DateTime.Now.AddYears(1)
+                });
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

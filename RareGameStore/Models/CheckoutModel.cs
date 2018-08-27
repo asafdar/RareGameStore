@@ -18,5 +18,8 @@ namespace RareGameStore.Models
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
+
+        [Required]
+        public string Nonce { get; set; }
     }
 }

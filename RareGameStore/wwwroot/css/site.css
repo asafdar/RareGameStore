@@ -33,3 +33,12 @@
         display: none;
     }
 }
+.row > div[class*='col-'] {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+.card {
+    min-width: inherit;
+    width: 300px;
+}

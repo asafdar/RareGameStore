@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using RareGameStore.Data;
 using RareGameStore.Models;
 using RareGameStore.Services;
+using Braintree;
 
 namespace RareGameStore
 {
@@ -27,14 +28,31 @@ namespace RareGameStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
+                options.UseInMemoryDatabase("Default")
+                );
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IEmailSender>((iServiceProvider) => new EmailSender(Configuration.GetValue<string>("SendGrid.ApiKey")));
+            services.AddTransient<IBraintreeGateway>((IServiceProvider) => new BraintreeGateway(
+                Configuration.GetValue<string>("Braintree.Environment"),
+                Configuration.GetValue<string>("Braintree.MerchantID"),
+                Configuration.GetValue<string>("Braintree.PublicKey"),
+                Configuration.GetValue<string>("Braintree.PrivateKey")
+                ));
+
+            services.AddTransient<SmartyStreets.USStreetApi.Client>((iSP) =>
+            {
+                SmartyStreets.ClientBuilder clientBuilder = new SmartyStreets.ClientBuilder(
+                    Configuration.GetValue<string>("SmartyStreets.AuthId"),
+                    Configuration.GetValue<string>("SmartyStreets.AuthToken")
+                );
+                return clientBuilder.BuildUsStreetApiClient();
+            });
 
             services.AddMvc();
         }
@@ -64,11 +82,11 @@ namespace RareGameStore
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            var roleManager = services.GetService<RoleManager<IdentityRole>>();
-            if (!roleManager.Roles.Any(x => x.Name == "Administrator"))
-            {
-                roleManager.CreateAsync(new IdentityRole("Administrator")).Wait();
-            }
+            //var roleManager = services.GetService<RoleManager<IdentityRole>>();
+            //if (!roleManager.Roles.Any(x => x.Name == "Administrator"))
+            //{
+            //    roleManager.CreateAsync(new IdentityRole("Administrator")).Wait();
+            //}
         }
     }
 }
