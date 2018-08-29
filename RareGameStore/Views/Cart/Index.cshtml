@@ -1,9 +1,9 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Cart";
 }
 
-<h2>Index</h2>
+<h2>Cart</h2>
 @if (Model.GameCartProducts.Count == 0)
 {
     <p>You have nothing in your cart, <a asp-controller="games" asp-action="index">Check out some products</a></p>
@@ -16,7 +16,7 @@ else
             <tr>
                 <td>@product.Game.Name</td>
                 <td>@((product.Game.Price ?? 0).ToString("c"))</td>
-                <td>@product.Game.Description</td>
+                @*<td>@product.Game.Description</td>*@
                 <td>@product.Quantity</td>
                 <td>
                     <form asp-action="remove" method="post">

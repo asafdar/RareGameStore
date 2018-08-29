@@ -42,19 +42,18 @@
                         <h5 class="card-text">@product.Name</h5>
                         <p class="card-text">@product.Description</p>
                         <p class="card-text">@(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price")</p>
-                        @*<form asp-action="add" method="post">
-            <input type="hidden" value="@Model.ID" />
-            <select name="quantity">
-                <option value="1">1</option
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-            <button class="btn btn-primary">Add to Cart</button>
-        </form>*@
-
-                        <a asp-controller="Games" asp-action="Details" asp-route-id="@product.ID">View Details</a>
+                        
+                        <form method="post">
+                            <input type="hidden" value="@product.ID" />
+                            <select name="quantity">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <button asp-controller="Games" asp-action="Details" asp-route-id="@product.ID" class="btn btn-primary">Add to Cart</button>
+                        </form>
                     </div>
         </div>
             

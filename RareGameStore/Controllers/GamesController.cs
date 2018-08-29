@@ -28,12 +28,12 @@ namespace RareGameStore.Controllers
             if (await _context.Games.CountAsync() == 0)
             {
                 List<Game> nes = new List<Game>();
-                nes.Add(new Game { Name = "Battletoads", Genre = "Platform", Condition = "Mint", Description = "1991", ImagePath = "./images/battletoads.png", Price = 75m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
-                nes.Add(new Game { Name = "Castlevania", Genre = "Action-Adventure", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/castlevania.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
-                nes.Add(new Game { Name = "Castlevania II", Genre = "Action-Adventure", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/castlevania2.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
-                nes.Add(new Game { Name = "Castlevania III", Genre = "Action-Adventure", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/castlevania3.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
-                nes.Add(new Game { Name = "Contra", Genre = "Run and Gun", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/contra.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
-                nes.Add(new Game { Name = "Donkey Kong", Genre = "Platform", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/donkeykong.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Battletoads", Genre = "Platform", Condition = "Mint", Description = "1991 - This first installment of the Battletoads series is considered to be one of the most difficult video games ever made.", ImagePath = "./images/battletoads.png", Price = 900m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Castlevania", Genre = "Action-Adventure", Condition = "Mint", Description = "1986 - This game, inspired by Bram Stoker's Dracula, is the start to one of the most beloved franchises of all time.", ImagePath = "./images/castlevania.png", Price = 500m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Castlevania II", Genre = "Action-Adventure", Condition = "Mint", Description = "1987 - This sequel finds Simon Belmont as he tries to undo a curse placed on him by Dracula.", ImagePath = "./images/castlevania2.png", Price = 225m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Castlevania III", Genre = "Action-Adventure", Condition = "Mint", Description = "1989 - This third installment of the Castlevania series is highly regarded for its soundtrack and high level of difficulty.", ImagePath = "./images/castlevania3.png", Price = 1200m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Contra", Genre = "Run and Gun", Condition = "Mint", Description = "1988 - Contra was originally released as an arcade game by Konami before being ported to the NES.", ImagePath = "./images/contra.png", Price = 1100m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                nes.Add(new Game { Name = "Donkey Kong", Genre = "Platform", Condition = "Mint", Description = "1986 - This console port of Nintendo's classic arcade game is considered to be one of the most influential games of all time.", ImagePath = "./images/donkeykong.png", Price = 375m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
                 nes.Add(new Game { Name = "Donkey Kong Jr.", Genre = "Platform", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/donkeykongjr.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
                 nes.Add(new Game { Name = "Double Dragon", Genre = "Beat 'em Up", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/doubledragon.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
                 nes.Add(new Game { Name = "Final Fantasy", Genre = "Role-Playing Game", Condition = "Mint", Description = "1986 - This game is in mint condition.", ImagePath = "./images/finalfantasy.png", Price = 95m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
@@ -47,9 +47,9 @@ namespace RareGameStore.Controllers
                 _context.Platform.Add(new Platform { Name = "NES", Games = nes });
 
                 List<Game> snes = new List<Game>();
-                snes.Add(new Game { Name = "Aladdin", Genre = "Adventure", Condition = "Good", ImagePath = "/images/aladdin.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
-                snes.Add(new Game { Name = "Chrono Trigger", Genre = "Role-Playing Game", Condition = "Good", ImagePath = "/images/chronotrigger.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
-                snes.Add(new Game { Name = "Contra 3: The Alien Wars", Genre = "Run and Gun", Condition = "Good", ImagePath = "/images/contra3.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Aladdin", Genre = "Platform", Condition = "Good", ImagePath = "/images/aladdin.png", Description = "This classic game based on the film of the same name was released in November 1993.", Price = 200m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Chrono Trigger", Genre = "Role-Playing Game", Condition = "Good", ImagePath = "/images/chronotrigger.png", Description = "Released in 1995, this classic role-playing game is considered by many to be one of the greatest games of all time.", Price = 300m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
+                snes.Add(new Game { Name = "Contra 3: The Alien Wars", Genre = "Run and Gun", Condition = "Good", ImagePath = "/images/contra3.png", Description = "1992 - This highly acclaimed sequel is considered by many to be the best in the series.", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
                 snes.Add(new Game { Name = "Donkey Kong Country", Genre = "Platform", Condition = "Good", ImagePath = "/images/dkcountry.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
                 snes.Add(new Game { Name = "Donkey Kong Country 2", Genre = "Platform", Condition = "Good", ImagePath = "/images/dkcountry2.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
                 snes.Add(new Game { Name = "Doom", Genre = "First-person shooter", Condition = "Good", ImagePath = "/images/doom.png", Description = "This game is slightly used", Price = 45m, DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
@@ -91,14 +91,14 @@ namespace RareGameStore.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details (int? id)
         {
             Game model = await _context.Games.FindAsync(id);
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Details(int? id, int quantity, string color)
+        public async Task<IActionResult> Details (int? id, int quantity)
         {
             GameCart cart = null;
             if (User.Identity.IsAuthenticated)
@@ -165,7 +165,7 @@ namespace RareGameStore.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> Add(int? id, int quantity, string color)
+        public async Task<IActionResult> Add(int? id, int quantity)
         {
             GameCart cart = null;
             if (User.Identity.IsAuthenticated)
@@ -228,7 +228,7 @@ namespace RareGameStore.Controllers
                 });
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Cart");
         }
     }
 }
